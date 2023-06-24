@@ -3,13 +3,9 @@ const cors = require("cors");
 const puppeteer = require("puppeteer");
 
 async function getResult(url) {
-  const browser = await puppeteer.launch({
-    headless: true,
-    defaultViewport: null,
-    args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox'
-    ]
+const browser = await puppeteer.launch({
+  headless: true,
+  args: ['--use-gl=egl'],
 });
   const page = await browser.newPage();
 
