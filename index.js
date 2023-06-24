@@ -4,7 +4,12 @@ const puppeteer = require("puppeteer");
 
 async function getResult(url) {
   const browser = await puppeteer.launch({
-  ignoreDefaultArgs: ['--disable-extensions'],
+    headless: true,
+    defaultViewport: null,
+    args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+    ]
 });
   const page = await browser.newPage();
 
