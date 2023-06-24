@@ -3,7 +3,9 @@ const cors = require("cors");
 const puppeteer = require("puppeteer");
 
 async function getResult(url) {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch({
+  ignoreDefaultArgs: ['--disable-extensions'],
+});
   const page = await browser.newPage();
 
   await page.goto(url);
