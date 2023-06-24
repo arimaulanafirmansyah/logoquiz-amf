@@ -3,7 +3,9 @@ const cors = require("cors");
 const puppeteer = require("puppeteer");
 
 async function getResult(url) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
   const page = await browser.newPage();
 
   await page.goto(url);
@@ -29,15 +31,20 @@ async function getResult(url) {
 }
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 
-app.listen(4000, () => {
-  console.log("Server Sedang Berjalan Di Port 4000");
+app.get('/', (req, res) => {
+  res.send("Server Sedang Berjalan");
 });
 
 app.get('/logoquiz', async (req, res) => {
   const url = 'https://logoquiz.net'; // Ganti dengan URL yang diinginkan
   const gets = await getResult(url);
   res.json(gets);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server Sedang Berjalan Di Port ${PORT}`);
 });
