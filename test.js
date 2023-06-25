@@ -1,4 +1,5 @@
 const express = require('express');
+const fetch = require('node-fetch');
 const app = express();
 const port = 1304;
 
@@ -21,8 +22,16 @@ app.get('/', (req, res) => {
   res.send(index);
 });
 
-app.get('/books', (req, res) => {
-  res.send(books);
+app.get('/test', (req, res) => {
+  fetch('https://amfcode.my.id/api/stalker/igstalk?user=amfcode_&apikey=arigantengbanget')
+  .then(response => response.json())
+  .then(data => {
+    
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Terjadi kesalahan:', error);
+  });
 });
 
 app.get('/books/:id', (req, res) => {
