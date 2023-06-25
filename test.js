@@ -9,9 +9,16 @@ let books = [
   { id: 2, title: 'Coming Soon', author: '@amfcode_' },
   { id: 3, title: 'PEPEK KUDA', author: '@amfcode_' },
 ];
+let index = [
+{
+  status: true,
+  message: 'Api By Amfcode',
+  author: '@amfcode_'
+}
+];
 
 app.get('/', (req, res) => {
-  res.send(books);
+  res.send(index);
 });
 
 app.get('/books', (req, res) => {
